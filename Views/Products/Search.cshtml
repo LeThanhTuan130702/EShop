@@ -1,0 +1,112 @@
+﻿@*@using ShopQuanAo.Models.ViewFolder;
+*@
+@model IEnumerable<Product>
+<!-- Shop Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+       
+        <div class="col-lg-12 col-md-8">
+            <div class="row pb-3">
+
+
+              
+
+                @foreach (var item in Model)
+                {
+                    <partial name="_Product" model="item" />
+
+                }
+
+               
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div>
+
+</div>
+
+@*<script>
+   //document.getElementById("fliter").addEventListener("click", function() {
+   //    alert("Button clicked!");
+   // });
+    document.getElementById("fliter").addEventListener("click",function(){
+        //alert("hola");
+        var priceRange = GetSelectedCheckBox("price-fliter-from");
+        var color = GetSelectedCheckBox("color-fliter-from");
+        var size=GetSelectedCheckBox("size-fliter-from");
+        var data={
+            PriceRange:priceRange,
+            Color:color,
+            Size:size
+        }
+        fetch("/Products/GetFilterdProducts",
+        {
+            method:"POST",
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(function(response){
+            if(response.ok)
+            {
+                return response.text();
+            }
+            else{
+                throw new Error("Error sending data to the controller");
+            }
+
+        }).then(function(result){
+            $("#filtered-products").html(result)
+                var totalitems = document.queryselectorall(".col-lg-4");
+                var pagesize=9;
+                var totalpages=math.ceil(totalitems.length/pagesize);
+                const div=document.createelement("div");
+                div.classlist.add("col-12");
+                const nav=document.createelement("nav");
+                div.classlist.add("col-12");
+                const ul = document.createelement("ul");
+                ul.classlist.add("pagination", "justify-content-center");
+                for(var i=1;i<=totalpages;i++)
+                {
+                   const li = document.createelement("li");
+                    li.classlist.add("page-item");
+                     const a = document.createelement("a");
+                    a.classlist.add("page-link");
+                    a
+                }
+
+
+        }).catch(function(error){
+            console.log("An error occured: ",error);
+        });
+
+    });
+    function GetSelectedCheckBox(formId) {
+
+        var checkboxes = $('#' + formId + ' input[type="checkbox"]:checked');
+        var values = []
+        checkboxes.each(function () {
+            values.push($(this).attr('val'))
+        });
+        return values;
+
+
+    }
+
+</script>
+<!-- Shop End -->
+<script>
+//    document.getElementById("a").addEventListener("dblclick", function() {
+//        alert("Button !");
+//    });
+//    document.getElementById("myButton").addEventListener("dblclick", function () {
+//        alert("you hit me!");
+
+//    })
+
+//});
+</script>*@
+
+
+

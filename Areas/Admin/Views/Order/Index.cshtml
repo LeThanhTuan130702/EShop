@@ -1,0 +1,62 @@
+﻿@model IEnumerable<OrderModel>
+
+@{
+    ViewData["Title"] = "Đơn hàng";
+}
+
+<h1 class="align-content-xl-center">Order</h1>
+
+@*<a class=" btn-primary" asp-action="Create">Create New</a>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Order_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Order_Code)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                @if (item.Status ==1)
+                {
+                    <td>
+                        <span class="text text-success">Hiển thị</span>
+                    </td>
+                }
+                else
+                {
+
+                    <td>
+                        <span class="text text-success">Ẩn</span>
+                    </td>
+                }
+                <td>
+                    <a asp-action="ViewOrder" asp-controller="Order" asp-route-ordercode="@item.Order_Code">View</a> |
+               @* <a asp-action="Details" asp-route-id="@item.Name">Details</a> |*@
+                    <a asp-action="Delete" asp-route-ordercode="@item.Order_Code">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,23 @@
+﻿
+@model CartItemViewModel
+
+         <a asp-controller="Cart" asp-action="Index" class="btn px-0 ml-3">
+              <i class="fas fa-shopping-cart text-primary"></i>
+            @if(Model?.CartItems.Count==0||Model?.CartItems.Count==null)
+            {
+                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+            }
+            else
+            {
+                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">@Model?.TotalQT</span>
+
+            }
+
+
+
+
+          </a>
+
+
+ 
+ 
